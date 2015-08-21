@@ -5,9 +5,14 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "./node_modules/.bin/babel-node src/main.js"
+    "bot": "./node_modules/.bin/babel-node src/main.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "babel": "^5.8.21",
+    "dotenv": "^1.2.0",
+    "tmi.js": "0.0.21"
+  }
 }

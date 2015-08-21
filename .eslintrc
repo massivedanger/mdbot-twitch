@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "indent": [2, 2],
+    "quotes": [2, "single"],
+    "linebreak-style": [2, "unix"],
+    "semi": [2, "always"],
+    "strict": 1,
+    "no-console": 0
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true,
+    "modules": true,
+    "arrowFunctions": true,
+    "classes": true,
+    "defaultParams": true,
+    "forOf": true,
+    "templateStrings": true,
+    "superInFunctions": true
+  },
+  "plugins": [],
+  "parser": "babel-eslint"
+}
