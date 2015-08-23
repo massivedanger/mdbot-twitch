@@ -1,39 +1,31 @@
+#!/usr/bin/env node
+
 import tmi from 'tmi.js';
 import dotenv from 'dotenv';
+import yargs from 'yargs';
+import fs from 'fs-extra';
+import path from 'path';
+
+import * as handlers from './handlers';
 
 dotenv.load();
-const { TWITCH_USERNAME, TWITCH_PASSWORD } = process.env;
-const channels = [
-  'evan_walsh'
-];
 
-var options = {
-  options: {
-    debug: false
-  },
-  connection: {
-    random: 'chat',
-    reconnect: true
-  },
+const argv = yargs.argv;
+const config = fs.readJsonSync(path.resolve(argv.config || './config.json'));
+
+if (!config.username || !config.password || !config.channels) {
+  console.error('NO VALID CONFIG! WHATTTTTT?');
+  process.exit(1);
+}
+
+const client = new tmi.client({
   identity: {
-    username: TWITCH_USERNAME,
-    password: TWITCH_PASSWORD
+    username: config.username,
+    password: config.password
   },
-  channels: channels
-};
+  channels: config.channels
+});
 
-let client = new tmi.client(options);
 client.connect();
 
-client.on('chat', (channel, user, message) => {
-  console.log(`[${channel}] ${user.username}: ${message}`);
-});
-
-client.on('connected', (address, port) => {
-  console.log('Connected!', address, port);
-});
-
-client.on('roomstate', (channel, state) => {
-  console.log(`Joined ${channel}`, state);
-  client.say(channel, 'Hello!');
-});
+client.on('chat', handlers.chat(client));
