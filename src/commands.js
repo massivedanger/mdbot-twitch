@@ -8,6 +8,10 @@ const Commands = {
   _commands: {
     test: function(twitch) {
       this.client.say(twitch.channel, `Test complete, ${twitch.user.username}`);
+    },
+
+    color: function(twitch, color) {
+      this.client.color(twitch.channel, color);
     }
   },
 

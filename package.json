@@ -15,11 +15,9 @@
   "devDependencies": {},
   "dependencies": {
     "babel": "^5.8.21",
-    "dotenv": "^1.2.0",
     "fs-extra": "^0.23.1",
-    "nedb": "^1.1.3",
+    "lowdb": "^0.10.2",
     "tmi.js": "0.0.21",
-    "vantage": "^1.3.12",
     "yargs": "^3.21.0"
   }
 }

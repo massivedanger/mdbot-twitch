@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
 import tmi from 'tmi.js';
-import dotenv from 'dotenv';
 import yargs from 'yargs';
 import fs from 'fs-extra';
 import path from 'path';
 
 import * as handlers from './handlers';
-
-dotenv.load();
 
 const argv = yargs.argv;
 const config = fs.readJsonSync(path.resolve(argv.config || './config.json'));
@@ -29,3 +26,5 @@ const client = new tmi.client({
 client.connect();
 
 client.on('chat', handlers.chat(client));
+client.on('join', handlers.join(client));
+client.on('part', handlers.part(client));

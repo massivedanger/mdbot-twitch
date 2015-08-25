@@ -3,15 +3,15 @@ export default class Message {
     Object.assign(this, data);
   }
 
-  get isSelf() {
-    return this.client.username == this.user.username;
-  }
-
   get command() {
     return this.text.substring(1);
   }
 
   get isCommand() {
     return this.text.startsWith('!');
+  }
+
+  get hasAuthorizedUser() {
+    return this.user.username == this.channel.substring(1);
   }
 }
